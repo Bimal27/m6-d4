@@ -2,10 +2,11 @@ import express from "express";
 import db from "../../db/modals/index.js";
 import s from "sequelize";
 import Category from "../../db/modals/category.js";
+// import Cart from "../../db/modals/cart.js";
 const { Op } = s;
 const router = express.Router();
 
-const { Product, Review , ProductCategory} = db;
+const { Product, Review , ProductCategory, Cart } = db;
 
 router
   .route("/")
@@ -22,9 +23,12 @@ router
   })
   .post(async (req, res, next) => {
     try {
-      const  {categoryId, ...rest} = req.body
+      const  {categoryId,userId, ...rest} = req.body
       const product = await Product.create(rest);
-const data = await ProductCategory.create({categoryId, productId:product.id})
+      const data = await ProductCategory.create({categoryId, productId:product.id})
+
+      const userData  = await Cart.create({userId, productId:product.id})
+  
 
       res.send(data);
     } catch (error) {

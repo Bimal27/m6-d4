@@ -7,6 +7,7 @@ import reviewsRouter from "./services/reviews/index.js";
 import productcatagoryRouter from "./services/productcatagory/index.js";
 import categoryRouter from "./services/category/index.js";
 import usersRouter from "./services/users/index.js";
+import cartsRouter from "./services/cart/index.js";
 const server = express();
 
 const { PORT = 5000 } = process.env;
@@ -19,6 +20,7 @@ server.use("/reviews", reviewsRouter)
 server.use("/productcatagory" , productcatagoryRouter)
 server.use("/category", categoryRouter)
 server.use("/users", usersRouter)
+server.use("/carts", cartsRouter)
 
 server.listen(PORT, async () => {
   await connectDB();
