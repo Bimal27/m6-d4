@@ -8,9 +8,8 @@ const { DataTypes } = s;
 const Cart = sequelize.define("cart", {
   id: {
     primaryKey: true,
-    type: DataTypes.INTEGER,
-    autoIncrement:true,
-    
+    type: DataTypes.TEXT,
+    defaultValue:s.UUIDV4,
   },
 });
 

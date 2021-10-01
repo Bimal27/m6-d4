@@ -20,7 +20,7 @@ Category.belongsToMany(Product, {
     through: { model: ProductCategory, unique: false },
 })
 
-Product.belongsToMany(User, {through: {model: Cart, unique: false}})
-User.belongsToMany(Product, {through: {model: Cart, unique: false}})
+Product.belongsToMany(User, {through: {model: Cart, unique: false},})
+User.belongsToMany(Product, {through: {model: Cart, unique: false},})
 
 export default { Review, Product ,Category, ProductCategory, User, Cart};

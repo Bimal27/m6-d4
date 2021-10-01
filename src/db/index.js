@@ -9,7 +9,7 @@ const sequelize = new Sequelize(PGDDATABASE, PGUSER, PGPASSWORD, {
 })
 export const connectDB = async () => {
     try {
-      await sequelize.sync();
+      await sequelize.sync({alter:true});
       console.log("DB connected");
     } catch (error) {
       console.log(error);
