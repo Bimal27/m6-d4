@@ -15,10 +15,7 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+  
     image: {
       type: DataTypes.STRING,
       defaultValue: "https://image.url",

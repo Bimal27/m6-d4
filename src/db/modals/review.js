@@ -12,10 +12,6 @@ const Review = sequelize.define("review", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  category: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
 });
 
 export default Review;

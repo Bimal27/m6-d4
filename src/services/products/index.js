@@ -1,19 +1,18 @@
 import express from "express";
 import db from "../../db/modals/index.js";
 import s from "sequelize";
+import Category from "../../db/modals/category.js";
 const { Op } = s;
 const router = express.Router();
 
-const { Product, Review } = db;
+const { Product, Review , ProductCategory} = db;
 
 router
   .route("/")
   .get(async (req, res, next) => {
     try {
       const data = await Product.findAll({
-        
-        include: Review,
-
+        include: [Review, {model:Category, through:{attributes:[]}}]
       });
       res.send(data);
     } catch (error) {
@@ -23,7 +22,10 @@ router
   })
   .post(async (req, res, next) => {
     try {
-      const data = await Product.create(req.body);
+      const  {categoryId, ...rest} = req.body
+      const product = await Product.create(rest);
+const data = await ProductCategory.create({categoryId, productId:product.id})
+
       res.send(data);
     } catch (error) {
       console.log(error);
